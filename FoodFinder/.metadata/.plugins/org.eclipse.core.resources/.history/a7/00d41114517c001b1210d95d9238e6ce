@@ -1,0 +1,30 @@
+package com.feasability.FoodFinder.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.feasability.FoodFinder.model.User;
+import com.feasability.FoodFinder.service.UserService;
+@RestController
+@RequestMapping("/api")  // part 4
+public class UserController {
+	
+	@Autowired
+	private UserService userService;
+	
+	@GetMapping("/user")
+	public List<User> getList() {
+		return userService.getList();
+	}
+	
+	@PostMapping("/user")
+	public User save(@RequestBody User userObj) {
+		userService.save(userObj);
+		return userObj;  // maybe should be void
+		
+	}
+}

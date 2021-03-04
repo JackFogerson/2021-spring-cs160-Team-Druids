@@ -1,0 +1,5 @@
+package com.feasability.FoodFinder.dao;
+
+public class UserDAOImplementation {
+
+}

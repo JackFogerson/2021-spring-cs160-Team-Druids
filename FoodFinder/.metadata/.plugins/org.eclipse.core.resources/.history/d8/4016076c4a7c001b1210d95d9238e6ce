@@ -1,0 +1,33 @@
+package com.feasability.FoodFinder.dao;
+
+import java.util.List;
+import com.feasability.FoodFinder.model.User;
+
+@Repository
+public class UserDAOImplementation implements UserDAO{
+
+	@Override
+	public List<User> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUser(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

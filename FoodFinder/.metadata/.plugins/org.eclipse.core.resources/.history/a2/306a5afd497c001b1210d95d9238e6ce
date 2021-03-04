@@ -1,0 +1,5 @@
+package com.feasability.FoodFinder.model;
+
+public class User {
+
+}

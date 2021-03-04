@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Sign Up</h1>
+	<form:form action = "" modelAttribute="">
+		First Name: <form:input path="firstName"/>
+		Last Name: <form:input path="lastName"/><br/>
+		Date of Birth: 
+		Email: <form:input path="email"/><br/>
+		Password: <form:input path="password"/><br/>
+		Location: <form:input path="location"/><br/>
+		Budget: <form:radiobutton path="budget" value = 50/>Under $50&nbsp;
+						<form:radiobutton path="budget" value = 100/>Under $100&nbsp;
+						<form:radiobutton path="budget" value = 1000/>Over $100<br/>
+		Favorite Cuisine: <form:select path="favoriteCuisine">
+			<form:option value = "Spanish Cuisine">Spanish Cuisine</form:option>
+		</form:select>
+	</form:form>
+</body>
+</html>

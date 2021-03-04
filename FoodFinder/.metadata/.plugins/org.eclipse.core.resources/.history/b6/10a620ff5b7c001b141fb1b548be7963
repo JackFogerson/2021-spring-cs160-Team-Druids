@@ -1,0 +1,3 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/foodfinder
+spring.datasource.username=root
+spring.datasource.password=Adedayo58280Adesokan!?

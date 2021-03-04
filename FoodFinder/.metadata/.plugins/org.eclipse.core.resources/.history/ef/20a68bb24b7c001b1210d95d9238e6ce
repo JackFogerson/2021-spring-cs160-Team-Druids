@@ -1,0 +1,41 @@
+package com.feasability.FoodFinder.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.feasability.FoodFinder.model.User;
+
+@Service
+public class UserServiceImplementation implements UserService{
+
+	@Transactional
+	@Override
+	public List<User> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Transactional
+	@Override
+	public User getUser(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Transactional
+	@Override
+	public void save(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Transactional
+	@Override
+	public void deleteUser(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
