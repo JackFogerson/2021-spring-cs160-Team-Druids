@@ -24,10 +24,16 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = {"/", "/home", "/index"})
+	@RequestMapping(value = {"/", "/index"})
 	public ModelAndView get() {
 		ModelAndView mav = new ModelAndView("userList");
 		mav.addObject("userList", userService.getList());
+		return mav;
+	}
+	
+	@RequestMapping("/home")
+		public ModelAndView showHomepage() {
+		ModelAndView mav = new ModelAndView("homepage");
 		return mav;
 	}
 	
@@ -64,9 +70,9 @@ public class UserController {
 	//	return userObj;
 	//}
 	
-	@RequestMapping("/showUserForm")
-	public ModelAndView showUserForm() {
-		ModelAndView mav = new ModelAndView("userAdd");
+	@RequestMapping("/userReg")
+	public ModelAndView showUserRegistration() {
+		ModelAndView mav = new ModelAndView("userReg");
 		mav.addObject("user", new User());
 		return mav;
 	}

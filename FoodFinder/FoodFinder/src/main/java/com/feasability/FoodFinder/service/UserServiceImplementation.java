@@ -27,7 +27,7 @@ public class UserServiceImplementation implements UserService{
 
 	/*
 	 * Gets the user with the given id
-	 * @preturn the user with the given id
+	 * @return the user with the given id
 	 */
 	@Transactional
 	@Override
