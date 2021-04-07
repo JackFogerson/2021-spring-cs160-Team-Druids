@@ -13,4 +13,6 @@ public interface UserDAO {
 	void save(User user);  		// Saves the user to the list
 	
 	void deleteUser(int id);	// Deletes the user from the list
+	
+	public User findByEmailAndPassword(String email, String password); // Returns a user with given email
 }

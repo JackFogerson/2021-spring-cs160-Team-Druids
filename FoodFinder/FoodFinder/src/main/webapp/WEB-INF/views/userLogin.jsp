@@ -9,13 +9,12 @@
 </head>
 <body>
 	<h1>Login</h1>
-	<form:form action = "${pageContext.request.contextPath}/loginUser" modelAttribute="user">
-		Email: <form:input path="email"/><br/>										<!-- create a text box for their email -->
-		Password: <form:input path="password"/><br/>								<!-- create a text box for their password -->
-		<form:hidden path = "id"/>							<!-- hide the id when submitting so the user can either be updated or added db -->
+	<form:form method="POST" action = "${pageContext.request.contextPath}/login-user" modelAttribute="user">
+		Email: <form:input path="email" name = "email"/><br/>										<!-- create a text box for their email -->
+		Password: <form:input path="password" name = "password"/><br/>								<!-- create a text box for their password -->
 		<button type = "submit">Login</button>				<!-- create a button to login the user-->
 	</form:form>	
 		<!-- add a button that redirects you to the home page -->
-		<button onclick = "window.location.href = '${pageContext.request.contextPath}/home' ">Return to homepage</button>
+		<button onclick = "window.location.href = '${pageContext.request.contextPath}/home' ">Return to Homepage</button>
 </body>
 </html>

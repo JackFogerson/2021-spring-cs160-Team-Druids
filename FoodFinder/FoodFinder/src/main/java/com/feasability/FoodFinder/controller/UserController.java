@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -74,6 +76,32 @@ public class UserController {
 	public ModelAndView showUserRegistration() {
 		ModelAndView mav = new ModelAndView("userReg");
 		mav.addObject("user", new User());
+		return mav;
+	}
+	
+	@RequestMapping("/login")
+	public ModelAndView showUserLogin(User user) {
+		ModelAndView mav = new ModelAndView("userLogin");
+		mav.addObject("user", new User());
+		return mav;
+	}
+	
+	@PostMapping("/login-user")
+	public ModelAndView loginUser(@ModelAttribute("user") User user) {
+		System.out.print(user.toString());
+		ModelAndView mav = new ModelAndView();
+		List<User> list = userService.getList();
+		for (int i = 0; i < list.size(); i++) {
+			String e = list.get(i).getEmail();
+			String email = user.getEmail();
+			if (e.equals(email)) {
+				mav.setViewName("userHome");
+				mav.addObject("user", new User());
+			}
+			else {
+				mav.setViewName("userList");
+			}
+		}
 		return mav;
 	}
 }
