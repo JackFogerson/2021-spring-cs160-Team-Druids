@@ -54,17 +54,18 @@ public class UserDAOImplementation implements UserDAO{
 	}
 
 	@Override
-	public User findByEmailAndPassword(String emailInput, String passwordInput) {
+	public User findByEmailAndPassword(String email, String password) {
 		Session currentSession = entityManager.unwrap(Session.class);  		// Gets the current session
 		Query<User> query = currentSession.createQuery("from User", User.class); 	// Create a query
 		List<User> list = query.getResultList();  	// Get a list of Users 
-		User user = null;
 		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getEmail() == emailInput) {
-				user = list.get(i);
+			String e = list.get(i).getEmail();
+			String p = list.get(i).getPassword();
+			if (e.equals(email) && p.equals(password)) {
+				User user = list.get(i);
 				return user;
 			}
 		}
-		return user;
+		return null;
 	}
 }

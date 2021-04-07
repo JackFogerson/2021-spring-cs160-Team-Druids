@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Login</h1>
-	<form:form method="POST" action = "${pageContext.request.contextPath}/login-user" modelAttribute="user">
+	<form:form method="POST" action = "${pageContext.request.contextPath}/login/user" modelAttribute="user">
 		Email: <form:input path="email" name = "email"/><br/>										<!-- create a text box for their email -->
 		Password: <form:input path="password" name = "password"/><br/>								<!-- create a text box for their password -->
 		<button type = "submit">Login</button>				<!-- create a button to login the user-->

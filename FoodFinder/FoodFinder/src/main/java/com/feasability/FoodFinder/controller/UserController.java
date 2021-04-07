@@ -86,21 +86,15 @@ public class UserController {
 		return mav;
 	}
 	
-	@PostMapping("/login-user")
+	@PostMapping("/login/user")
 	public ModelAndView loginUser(@ModelAttribute("user") User user) {
-		System.out.print(user.toString());
 		ModelAndView mav = new ModelAndView();
-		List<User> list = userService.getList();
-		for (int i = 0; i < list.size(); i++) {
-			String e = list.get(i).getEmail();
-			String email = user.getEmail();
-			if (e.equals(email)) {
-				mav.setViewName("userHome");
-				mav.addObject("user", new User());
-			}
-			else {
-				mav.setViewName("userList");
-			}
+		User u = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		if (u != null) {
+			mav.setViewName("userHome");
+		}
+		else {
+			mav.setViewName("userList");
 		}
 		return mav;
 	}
