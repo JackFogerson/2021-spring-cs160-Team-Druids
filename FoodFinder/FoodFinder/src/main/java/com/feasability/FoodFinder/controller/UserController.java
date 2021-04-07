@@ -70,7 +70,7 @@ public class UserController {
 	//	return userObj;
 	//}
 	
-	@RequestMapping("/userReg")
+	@RequestMapping("/registration")
 	public ModelAndView showUserRegistration() {
 		ModelAndView mav = new ModelAndView("userReg");
 		mav.addObject("user", new User());
