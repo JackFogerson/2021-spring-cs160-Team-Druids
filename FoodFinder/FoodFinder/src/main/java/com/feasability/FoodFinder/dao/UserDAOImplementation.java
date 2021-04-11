@@ -3,6 +3,7 @@ package com.feasability.FoodFinder.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Table;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.feasability.FoodFinder.model.User;
 
 @Repository
+@Table(name = "users")
 public class UserDAOImplementation implements UserDAO{
 
 	@Autowired
@@ -50,5 +52,20 @@ public class UserDAOImplementation implements UserDAO{
 		User userObj = currentSession.get(User.class, id);
 		currentSession.delete(userObj);
 	}
-	
+
+	@Override
+	public User findByEmailAndPassword(String email, String password) {
+		Session currentSession = entityManager.unwrap(Session.class);  		// Gets the current session
+		Query<User> query = currentSession.createQuery("from User", User.class); 	// Create a query
+		List<User> list = query.getResultList();  	// Get a list of Users 
+		for (int i = 0; i < list.size(); i++) {
+			String e = list.get(i).getEmail();
+			String p = list.get(i).getPassword();
+			if (e.equals(email) && p.equals(password)) {
+				User user = list.get(i);
+				return user;
+			}
+		}
+		return null;
+	}
 }

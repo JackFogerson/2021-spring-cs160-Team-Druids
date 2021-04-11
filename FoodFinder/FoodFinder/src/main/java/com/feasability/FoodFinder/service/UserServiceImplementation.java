@@ -27,7 +27,7 @@ public class UserServiceImplementation implements UserService{
 
 	/*
 	 * Gets the user with the given id
-	 * @preturn the user with the given id
+	 * @return the user with the given id
 	 */
 	@Transactional
 	@Override
@@ -52,6 +52,11 @@ public class UserServiceImplementation implements UserService{
 	@Override
 	public void deleteUser(int id) {  
 		userDAO.deleteUser(id);
+	}
+
+	@Override
+	public User findByEmailAndPassword(String email, String password) {
+		return userDAO.findByEmailAndPassword(email, password);
 	}
 
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,10 +26,16 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = {"/", "/home", "/index"})
+	@RequestMapping(value = {"/", "/index"})
 	public ModelAndView get() {
 		ModelAndView mav = new ModelAndView("userList");
 		mav.addObject("userList", userService.getList());
+		return mav;
+	}
+	
+	@RequestMapping("/home")
+		public ModelAndView showHomepage() {
+		ModelAndView mav = new ModelAndView("homepage");
 		return mav;
 	}
 	
@@ -64,10 +72,30 @@ public class UserController {
 	//	return userObj;
 	//}
 	
-	@RequestMapping("/showUserForm")
-	public ModelAndView showUserForm() {
-		ModelAndView mav = new ModelAndView("userAdd");
+	@RequestMapping("/registration")
+	public ModelAndView showUserRegistration() {
+		ModelAndView mav = new ModelAndView("userReg");
 		mav.addObject("user", new User());
+		return mav;
+	}
+	
+	@RequestMapping("/login")
+	public ModelAndView showUserLogin(User user) {
+		ModelAndView mav = new ModelAndView("userLogin");
+		mav.addObject("user", new User());
+		return mav;
+	}
+	
+	@PostMapping("/login/user")
+	public ModelAndView loginUser(@ModelAttribute("user") User user) {
+		ModelAndView mav = new ModelAndView();
+		User u = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		if (u != null) {
+			mav.setViewName("userHome");
+		}
+		else {
+			mav.setViewName("userList");
+		}
 		return mav;
 	}
 }

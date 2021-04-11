@@ -49,5 +49,7 @@
 		<form:hidden path = "id"/>							<!-- hide the id when submitting so the user can either be updated or added db -->
 		<button type = "submit">Create Account</button>		<!-- create a button to submit the user-->
 	</form:form>
+	<!-- add a button that redirects you to the home page -->
+	<button onclick = "window.location.href = '${pageContext.request.contextPath}/home' ">Return to homepage</button>
 </body>
 </html>

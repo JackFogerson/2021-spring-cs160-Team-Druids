@@ -39,6 +39,8 @@
 	</table><br/>
 	
 	<!-- add a button that redirects you to the sign up page -->
-	<button onclick = "window.location.href = '${pageContext.request.contextPath}/showUserForm' ">Sign Up</button>
+	<button onclick = "window.location.href = '${pageContext.request.contextPath}/registration' ">Sign Up</button>
+	<!-- add a button that redirects you to the home page -->
+	<button onclick = "window.location.href = '${pageContext.request.contextPath}/home' ">Return to Home</button>
 </body>
 </html>
