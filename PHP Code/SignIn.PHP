@@ -40,10 +40,9 @@ if (isset($_POST["name"]) && isset($_POST['pw'])){
 	if (!$result) die ("Not a correct login");
 	$rows = $result->num_rows;
 	if($rows > 0) {
-		if (isset($_POST['stayin'])){
-			$_SESSION['username'] = $name;
-			$_SESSION['password'] = $pw;
-		}
+		$_SESSION['username'] = $name;
+		$_SESSION['password'] = $pw;
+		
 		echo "Hello " . $name ."! ";
 		echo "Please <a href='UserProfile.php'>click here</a> to log in.";
 	}
