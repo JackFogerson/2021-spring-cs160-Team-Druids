@@ -16,6 +16,7 @@ if (isset($_SESSION['username'])){
 	#add the session variables
 	$user = $_SESSION['username'];
 	$pass = $_SESSION['password'];
+	$id = $_SESSION['id'];
 
 	echo "Hello " . $user ."! ";
 	
@@ -35,13 +36,18 @@ if (isset($_POST["name"]) && isset($_POST['pw'])){
 	$pw = sanatizeName($conn, 'pw');
 
 
-	$query = "SELECT * FROM users WHERE (username='$name' OR email='$name') AND password='$pw'";
+	$query = "SELECT id FROM users WHERE (username='$name' OR email='$name') AND password='$pw'";
 	$result = $conn->query($query);
 	if (!$result) die ("Not a correct login");
 	$rows = $result->num_rows;
+	$result->data_seek(0);
+	$row = $result->fetch_array(MYSQLI_NUM);
+	$id = $row[0];
 	if($rows > 0) {
 		$_SESSION['username'] = $name;
 		$_SESSION['password'] = $pw;
+		$_SESSION['id'] = $id;
+
 		
 		echo "Hello " . $name ."! ";
 		echo "Please <a href='UserProfile.php'>click here</a> to log in.";
