@@ -79,10 +79,19 @@ if (isset($_POST["username"]) && isset($_POST['pw']) && isset($_POST['email'])){
 			session_start();
 			$_SESSION['username'] = $username;
 			$_SESSION['password'] = $pw;
+			$query = "SELECT id FROM users WHERE (username='$name' OR email='$name') AND password='$pw'";
+			$result = $conn->query($query);
+			if (!$result) die ("error");
+			$rows = $result->num_rows;
+			$result->data_seek(0);
+			$row = $result->fetch_array(MYSQLI_NUM);
+			$id = $row[0];
+			$_SESSION['id'] = $id;
 			echo "Please <a href='UserProfile.php'>click here</a> to log in.";
 		}
 	}
 }
+
 
 else{
 	echo "Enter a username, password, and email.";
