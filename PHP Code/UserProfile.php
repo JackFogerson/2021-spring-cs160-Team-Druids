@@ -81,7 +81,7 @@ echo <<<_END
      <input type="submit" value="Home" name="home"></pre></form>
 	 <form method='post' action='Search.php' enctype="multipart/form-data"><pre>
      <input type="submit" value="Search" name="search"></pre></form>
-	 <form method='post' action='FriendSearch.php' enctype="multipart/form-data"><pre>
+	 <form method='post' action='Friends.php' enctype="multipart/form-data"><pre>
      <input type="submit" value="Find Friends" name="friendsearch"></pre></form>
 	 <a href="SignIn.php">
 	 <img src="nouserpic.PNG" alt="icon" width="50" height="50"></a>
