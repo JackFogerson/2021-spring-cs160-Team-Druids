@@ -3,10 +3,16 @@
 #Site Header
 websiteHeader();
 
-#asks for email
 echo nl2br ("\nForgot Username/Password\n");
-echo nl2br ("Enter your email address to reset your username or password");
-forgot();
+
+if (isset($_POST["email"])){
+	echo nl2br ("Email sent. Check your email to reset your username or password");
+}
+else{
+	#asks for email
+	echo nl2br ("Enter your email address to reset your username or password");
+	forgot();
+}
 
 function websiteHeader(){
 echo <<<_END
@@ -16,7 +22,7 @@ echo <<<_END
      <input type="submit" value="Home" name="home"></pre></form>
 	 <form method='post' action='Search.php' enctype="multipart/form-data"><pre>
      <input type="submit" value="Search" name="search"></pre></form>
-	 <form method='post' action='FriendSearch.php' enctype="multipart/form-data"><pre>
+	 <form method='post' action='Friends.php' enctype="multipart/form-data"><pre>
      <input type="submit" value="Find Friends" name="friendsearch"></pre></form>
 	 <a href="SignIn.php">
 	 <img src="nouserpic.PNG" alt="icon" width="50" height="50"></a>
@@ -26,7 +32,7 @@ return;
 
 function forgot(){
 echo <<<_END
-     <html><body><form method='post' action='EmailSent.php' enctype="multipart/form-data"><pre>
+     <html><body><form method='post' action='Forgot.php' enctype="multipart/form-data"><pre>
      Email: <input type="text" name="email">
 	 <input type="submit" value="Reset Username" name="username">
      <input type="submit" value="Reset Password" name="password"></pre></form>
