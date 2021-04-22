@@ -15,6 +15,7 @@ Expected results:
   *** Test Case: Login #1 Valid credentials ***
   
 Expected Url is: http://localhost:3000/dashboard
+
 Result Url is: http://localhost:3000/dashboard
 
 *** Test Case: Restaurant Search #1: Cuisine and zipcode ***
@@ -69,10 +70,12 @@ San Jose, CA
 *** Test Case: Sign Out ***
 
 Expected Url is: http://localhost:3000/login
+
 Result Url is: http://localhost:3000/login
 
 *** Test Case: Login #2: Invalid username ***
 
 Expected Url is: http://localhost:3000/login
+
 Result Url is: http://localhost:3000/login
 
