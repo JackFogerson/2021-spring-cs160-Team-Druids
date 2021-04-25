@@ -203,6 +203,28 @@
 				},
 				{
 					"name": "POST search",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Search for italian food in san jose', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -226,7 +248,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/search",
+							"raw": "http://localhost:4000/search?Authorization=Bearer: {{token}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -234,6 +256,12 @@
 							"port": "4000",
 							"path": [
 								"search"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer: {{token}}"
+								}
 							]
 						}
 					},
@@ -258,7 +286,7 @@
 							"script": {
 								"exec": [
 									"pm.test('User already exists', function () {\r",
-									"    pm.response.to.have.status(500);\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([500,501]);\r",
 									"})"
 								],
 								"type": "text/javascript"
