@@ -7,7 +7,7 @@ function FriendRequest() {
             <div className="card-body">
                 <div className="row">
                     <ReactRoundedImage
-                        image="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
+                        image="https://t4.ftcdn.net/jpg/04/10/43/77/360_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
                         roundedColor="#64b5f6"
                         imageWidth="100"
                         imageHeight="100"
