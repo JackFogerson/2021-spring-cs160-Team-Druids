@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `FoodFinder`.`friendship_request`;
 DROP TABLE IF EXISTS `FoodFinder`.`friendships`;
 DROP TABLE IF EXISTS `FoodFinder`.`user_party`;
 DROP TABLE IF EXISTS `FoodFinder`.`restaurant_owners`;
@@ -117,6 +118,23 @@ CREATE TABLE `FoodFinder`.`friendships` (
      ON DELETE CASCADE
      ON UPDATE CASCADE,
    CONSTRAINT `ffid`
+     FOREIGN KEY (`follower_id`)
+     REFERENCES `FoodFinder`.`users` (`id`)
+     ON DELETE CASCADE
+     ON UPDATE CASCADE
+);
+
+CREATE TABLE `FoodFinder`.`friendship_request` (
+   `user_id` int NOT NULL,
+   `follower_id` int NOT NULL,
+   `date_requested` datetime NOT NULL,
+   INDEX `id_idx` (`user_id` ASC, `follower_id` ASC) VISIBLE,
+   CONSTRAINT `fruid`
+     FOREIGN KEY (`user_id`)
+     REFERENCES `FoodFinder`.`users` (`id`)
+     ON DELETE CASCADE
+     ON UPDATE CASCADE,
+   CONSTRAINT `frfid`
      FOREIGN KEY (`follower_id`)
      REFERENCES `FoodFinder`.`users` (`id`)
      ON DELETE CASCADE
