@@ -56,7 +56,7 @@ export async function login(req, res) {
             //     "Access-Control-Allow-Credentials": "true"
             // }).send();
 
-            res.json({ accessToken: accessToken }).send();
+            res.json({ accessToken: accessToken, user: user.username}).send();
         } else {
             res.status(401).send("Incorrect login credentials");
         }
