@@ -1,0 +1,359 @@
+{
+	"id": "f244d17c-845d-48aa-a11a-8fbbc0f8dda9",
+	"name": "FoodFinder API Testing",
+	"timestamp": "2021-04-28T11:03:10.906Z",
+	"collection_id": "ee533064-4ff7-4427-9f5b-7768ffaef621",
+	"folder_id": 0,
+	"environment_id": "4791d8e3-cff2-4117-ac5d-c37264714378",
+	"totalPass": 11,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "20f775af-96ce-4b62-bff4-ef478f35c109",
+			"name": "GET logout OK",
+			"url": "http://localhost:4000/logout",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Logout should pass": true
+			},
+			"testPassFailCounts": {
+				"Logout should pass": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Logout should pass": true
+				}
+			]
+		},
+		{
+			"id": "b08b4ff2-f0a5-4570-8145-a2dc359fef02",
+			"name": "GET users",
+			"url": "http://localhost:4000/users",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"User authenticated": true
+			},
+			"testPassFailCounts": {
+				"User authenticated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"User authenticated": true
+				}
+			]
+		},
+		{
+			"id": "42584d7b-9481-4c1a-9999-5382e5450112",
+			"name": "GET friends",
+			"url": "http://localhost:4000/friends",
+			"time": 27,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Friends viewable": true
+			},
+			"testPassFailCounts": {
+				"Friends viewable": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Friends viewable": true
+				}
+			]
+		},
+		{
+			"id": "a571697b-ab78-472b-ba6e-f3c4dd7603f9",
+			"name": "POST login BAD REQUEST",
+			"url": "http://localhost:4000/login",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Login should not pass": true
+			},
+			"testPassFailCounts": {
+				"Login should not pass": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Login should not pass": true
+				}
+			]
+		},
+		{
+			"id": "5a436b73-1400-4bcb-a53f-5a351c479a50",
+			"name": "POST login OK",
+			"url": "http://localhost:4000/login",
+			"time": 67,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Login should pass": true
+			},
+			"testPassFailCounts": {
+				"Login should pass": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				67
+			],
+			"allTests": [
+				{
+					"Login should pass": true
+				}
+			]
+		},
+		{
+			"id": "e69b5a0b-b88c-49b2-b84b-e752a043d3e5",
+			"name": "POST search",
+			"url": "http://localhost:4000/search?Authorization=Bearer:%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNjE5NjA3NzkxfQ.f9VmM5PNBQ0ZENLnxeZLx6Nr_sVQW95Y641594fG1JQ",
+			"time": 714,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Search for italian food in san jose": true
+			},
+			"testPassFailCounts": {
+				"Search for italian food in san jose": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				714
+			],
+			"allTests": [
+				{
+					"Search for italian food in san jose": true
+				}
+			]
+		},
+		{
+			"id": "41dcda87-9176-4ca4-8cd4-8b7873ab74f2",
+			"name": "POST signup BAD REQUEST",
+			"url": "http://localhost:4000/signup",
+			"time": 30,
+			"responseCode": {
+				"code": 501,
+				"name": "Not Implemented"
+			},
+			"tests": {
+				"User already exists": true
+			},
+			"testPassFailCounts": {
+				"User already exists": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"User already exists": true
+				}
+			]
+		},
+		{
+			"id": "d566e3e0-5bc6-47e7-88f8-c568a770beb9",
+			"name": "POST signup OK",
+			"url": "http://localhost:4000/signup",
+			"time": 78,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Created user": true
+			},
+			"testPassFailCounts": {
+				"Created user": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				78
+			],
+			"allTests": [
+				{
+					"Created user": true
+				}
+			]
+		},
+		{
+			"id": "3740a86b-3f75-4381-bd67-44841d6ae4a0",
+			"name": "POST create friend request",
+			"url": "http://localhost:4000/friends?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNjE5NjA3NzkxfQ.f9VmM5PNBQ0ZENLnxeZLx6Nr_sVQW95Y641594fG1JQ",
+			"time": 26,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Friend request created": true
+			},
+			"testPassFailCounts": {
+				"Friend request created": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Friend request created": true
+				}
+			]
+		},
+		{
+			"id": "fb56be08-e0eb-4b20-9d46-9310cc391f28",
+			"name": "POST process friend request",
+			"url": "http://localhost:4000/friends?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNjE5NjA3NzkxfQ.f9VmM5PNBQ0ZENLnxeZLx6Nr_sVQW95Y641594fG1JQ",
+			"time": 28,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Friend request processed": true
+			},
+			"testPassFailCounts": {
+				"Friend request processed": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Friend request processed": true
+				}
+			]
+		},
+		{
+			"id": "0e513f11-21eb-44fe-bf24-9b276e478b53",
+			"name": "POST friendslist",
+			"url": "http://localhost:4000/friends?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudGhvbnlAZ21haWwuY29tIiwiaWF0IjoxNjE5NjA3NzkxfQ.f9VmM5PNBQ0ZENLnxeZLx6Nr_sVQW95Y641594fG1JQ",
+			"time": 27,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Friendlist generated": true
+			},
+			"testPassFailCounts": {
+				"Friendlist generated": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Friendlist generated": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 1025,
+	"collection": {
+		"requests": [
+			{
+				"id": "20f775af-96ce-4b62-bff4-ef478f35c109",
+				"method": "GET"
+			},
+			{
+				"id": "b08b4ff2-f0a5-4570-8145-a2dc359fef02",
+				"method": "GET"
+			},
+			{
+				"id": "42584d7b-9481-4c1a-9999-5382e5450112",
+				"method": "GET"
+			},
+			{
+				"id": "a571697b-ab78-472b-ba6e-f3c4dd7603f9",
+				"method": "POST"
+			},
+			{
+				"id": "5a436b73-1400-4bcb-a53f-5a351c479a50",
+				"method": "POST"
+			},
+			{
+				"id": "e69b5a0b-b88c-49b2-b84b-e752a043d3e5",
+				"method": "POST"
+			},
+			{
+				"id": "41dcda87-9176-4ca4-8cd4-8b7873ab74f2",
+				"method": "POST"
+			},
+			{
+				"id": "d566e3e0-5bc6-47e7-88f8-c568a770beb9",
+				"method": "POST"
+			},
+			{
+				"id": "3740a86b-3f75-4381-bd67-44841d6ae4a0",
+				"method": "POST"
+			},
+			{
+				"id": "fb56be08-e0eb-4b20-9d46-9310cc391f28",
+				"method": "POST"
+			},
+			{
+				"id": "0e513f11-21eb-44fe-bf24-9b276e478b53",
+				"method": "POST"
+			}
+		]
+	}
+}
