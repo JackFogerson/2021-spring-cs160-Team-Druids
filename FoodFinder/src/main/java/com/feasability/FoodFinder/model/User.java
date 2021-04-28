@@ -25,6 +25,9 @@ public class User {
 	private String lastName;
 	
 	@Column
+	private String username;
+	
+	@Column
 	private String email;
 	
 	@Column
@@ -90,7 +93,23 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	
+	/*
+	 * Gets the user's username
+	 * @return the user's username
+	 */
+	public String getUsername() {
+		return username;
+	}
+	
+	/*
+	 * Sets the user's username
+	 * @param username the user's username
+	 */
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	/*
 	 * Gets the user's email
 	 * @return the user's email
@@ -193,7 +212,8 @@ public class User {
 	 */
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", password=" + password + ", location=" + location + "]";
-	}	
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
+				+ ", email=" + email + ", password=" + password + ", location=" + location + ", budget=" + budget
+				+ ", dateOfBirth=" + dateOfBirth + ", favoriteCuisine=" + favoriteCuisine + "]";
+	}
 }

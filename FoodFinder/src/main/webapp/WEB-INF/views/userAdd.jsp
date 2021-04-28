@@ -9,9 +9,10 @@
 </head>
 <body>
 	<h1>Sign Up</h1>
-	<form:form action = "${pageContext.request.contextPath}/save" modelAttribute="user">
+	<form:form action = "${pageContext.request.contextPath}/saveUser" modelAttribute="user">
 		First Name: <form:input path="firstName"/>									<!-- create a text box for the user's first name-->
 		Last Name: <form:input path="lastName"/><br/>								<!-- create a text box for their last name -->
+		Username: <form:input path="username"/><br/>
 		Date of Birth: <form:input path="dateOfBirth" type = "date"/><br/>			<!-- create a date picker for their date of birth -->
 		Email: <form:input path="email"/><br/>										<!-- create a text box for their email -->
 		Password: <form:input path="password"/><br/>								<!-- create a text box for their password -->
@@ -46,7 +47,7 @@
 			<form:option value = "Mediterranean Cuisine">Mediterranean Cuisine</form:option>
 			<form:option value = "Korean Cuisine">Korean Cuisine</form:option>
 		</form:select><br/>
-		<form:hidden path = "id"/>							<!-- hide the id when submitting so the user can either be updated or added db -->
+		<form:hidden path = "id"/>							<!-- hide the id when submitting so the user can either be updated or added to the db -->
 		<button type = "submit">Create Account</button>		<!-- create a button to submit the user-->
 	</form:form>
 </body>
