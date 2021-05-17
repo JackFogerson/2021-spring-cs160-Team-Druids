@@ -10,6 +10,7 @@ Directory structure:
 README.md
 
 Food Finder
+
 To run this project you need:
 
 Node.js 14+
