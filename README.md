@@ -14,6 +14,7 @@ Food Finder
 To run this project you need:
 
 Node.js 14+
+
 Directions to run project:
 
 git clone the repository
