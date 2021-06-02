@@ -5,25 +5,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Controller;  //Might be wrong import
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.feasability.FoodFinder.model.Restaurant;
+import com.feasability.FoodFinder.model.SearchFilter;
 import com.feasability.FoodFinder.model.User;
 import com.feasability.FoodFinder.service.RestaurantService;
 import com.feasability.FoodFinder.service.UserService;
 
 @Controller
 public class FoodFinderController {
+	
+	private String initialSearch = "";						// save the initial search result for filtering
 	
 	@Autowired
 	private UserService userService;
@@ -37,8 +35,8 @@ public class FoodFinderController {
 	@RequestMapping(value = {"/", "/home"})
 	public ModelAndView home() {
 		ModelAndView mav = new ModelAndView("homepage");	// Create a new MAV for the page
-		//mav.addObject("home");						// Add the list of users to the MAV
-		return mav;										// Return the MAV
+		//mav.addObject("home");							// Add the list of users to the MAV
+		return mav;											// Return the MAV
 	}
 	
 	/*
@@ -122,6 +120,7 @@ public class FoodFinderController {
 		User u = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
 		if (u != null) {
 			mav.setViewName("userHome");
+			mav.addObject(u);
 		}
 		else {
 			mav.setViewName("userList");
@@ -190,52 +189,63 @@ public class FoodFinderController {
 	}
 	
 	@RequestMapping("/searchRestaurant")
-	public ModelAndView search(@Param("keyword") String keyword) {
+	public ModelAndView search(@Param("keyword") String keyword, @ModelAttribute("searchFilter") SearchFilter filter) {
 		//List<Restaurant> searchResult = restaurantService.search(keyword);
 		ModelAndView mav = new ModelAndView("restaurantSearchResult");					// Create a new MAV for the page
 		mav.addObject("keyword", keyword);												// Add the keyword to the MAV
-		mav.addObject("restaurantSearchResult", restaurantService.search(keyword));		// Add the list of search results to the MAV 
-		mav.addObject("selectedBudgets", new ArrayList<String>());
-		mav.addObject("selectedCuisines", new ArrayList<String>());
+		mav.addObject("restaurantSearchResult", restaurantService.search(keyword));		// Add the list of search results to the MAV
+		
+		initialSearch = keyword;														// Save the keyword
 		return mav;																		// Return the MAV
-	}
+		}
 	
-	
-	@ModelAttribute("budgetList")
-	public List<String> getBudgetList() {
-		List<String> budgetList = new ArrayList<>();
-		budgetList.add("Under $50");
-		budgetList.add("Under $100");
-		budgetList.add("Over $100");
-		return budgetList;
-	}
-	
-	@ModelAttribute("cuisineList")
-	public List<String> getCuisineList() {
-		List<String> cuisineList = new ArrayList<>();
-		cuisineList.add("African");
-		cuisineList.add("American");
-		cuisineList.add("Brazilian");
-		cuisineList.add("Cajun");
-		cuisineList.add("Caribbean");
-		cuisineList.add("Chinese");
-		cuisineList.add("Cuban");
-		cuisineList.add("French");
-		cuisineList.add("German");
-		cuisineList.add("Greek");
-		cuisineList.add("Indian");		
-		cuisineList.add("Italian");
-		cuisineList.add("Japanese");
-		cuisineList.add("Korean");
-		cuisineList.add("Mediterranean");
-		cuisineList.add("Portuguese");
-		cuisineList.add("Russian");
-		cuisineList.add("Seafood");
-		cuisineList.add("Soul Food");
-		cuisineList.add("Spanish");
-		cuisineList.add("Thai");
-		cuisineList.add("Turkish");
-		cuisineList.add("Vietnamese");
-		return cuisineList;
+	@RequestMapping("/filterRestaurantSearch")
+	public ModelAndView filterSearch(@ModelAttribute("searchFilter") SearchFilter filter) {
+		ModelAndView mav = new ModelAndView("filterRestaurantSearch");											// Create a new MAV for the page
+		String keyword = initialSearch;
+		mav.addObject("keyword", keyword);																		// Add the keyword to the MAV
+		
+		if (filter.totalSize() == 0) {																			// If no filters have been selected
+			mav.addObject("restaurantSearchResult", restaurantService.search(keyword));							// Add the list of search results to the MAV 
+		} else {
+			List<Restaurant> searchResults = new ArrayList<>();													// Create a new list for the search results
+			if (filter.getLocation() == "") {																	// If the filter doesn't have a location
+				searchResults = restaurantService.search(keyword);												// Get the list of restaurants that match the search keyword
+			} else {
+				String location = "%" + filter.getLocation() + "%";												// Get the location from the filter
+				searchResults = restaurantService.filterByLocation(keyword, location);							// Get the list of restaurants that match the search keyword and the location
+			}
+			
+			List<Restaurant> budgetResults = new ArrayList<>();													// Create a list to hold the restaurants filtered by budget
+			List<Restaurant> finalResults = new ArrayList<>();													// Create a list to hold the final restaurants filtered by budget and cuisine
+			
+			if (filter.getSelectedBudgets().length == 0) {														// If no budgets have been selected for filtering
+				budgetResults = searchResults;																	// Set budgetResults equal to searchResults
+			} else {
+				for (int i = 0; i < filter.getSelectedBudgets().length; i++) {									// Iterate through the list of budgets in the filter
+					String budget = filter.getSelectedBudgets()[i];												// Get the budget at index i
+					for (int j = 0; j < searchResults.size(); j++) {											// Iterate through the search results
+						if (searchResults.get(j).getBudget().toLowerCase().equals(budget.toLowerCase())) {		// If the budget in the search matches the budget for the filter
+							budgetResults.add(searchResults.get(j));											// Add the restaurant to budgetResults
+						}
+					}
+				}
+			}
+			
+			if (filter.getSelectedCuisines().length == 0) {														// If no cuisines have been selected for filtering
+				finalResults = budgetResults;																	// Set finalResults equal to budgetResults
+			} else {
+				for (int i = 0; i < filter.getSelectedCuisines().length; i++) {									// Iterate through the list of cuisines in the filter
+					String cuisine = filter.getSelectedCuisines()[i];											// Get the cuisine at index i
+					for (int j = 0; j < budgetResults.size(); j++) {											// Iterate through budgetResults
+						if (budgetResults.get(j).getCuisine().toLowerCase().equals(cuisine.toLowerCase())) {	// If the cuisine in budgetResults matches the cuisine for the filter
+							finalResults.add(budgetResults.get(j));												// Add the restaurant to finalResults
+						}
+					}
+				}
+			}
+			mav.addObject("restaurantSearchResult", finalResults);
+		}
+		return mav;
 	}
 }

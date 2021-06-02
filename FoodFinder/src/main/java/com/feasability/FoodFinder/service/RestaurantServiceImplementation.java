@@ -60,5 +60,15 @@ public class RestaurantServiceImplementation implements RestaurantService{
 	 */
 	public List<Restaurant> search(String keyword) {
 		return restaurantDAO.search(keyword);
-	}	
+	}
+	
+	/*
+	 * Uses JPA Repository to search for restaurants that match the given keyword and location
+	 * @param keyword the word being searched for
+	 * @param location the desired location of the restaurant
+	 * @return a list of restaurants the match the keyword and location
+	 */
+	public List<Restaurant> filterByLocation(String keyword, String location) {
+		return restaurantDAO.filterByLocation(keyword, location);
+	}
 }

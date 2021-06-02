@@ -145,7 +145,11 @@ public class Restaurant {
 	public void setBudget(String budget) {
 		this.budget = budget;
 	}
-
+		
+	/*
+	 * A string representation of the restaurant
+	 * @return a string composed of the restaurant's instance variables
+	 */
 	@Override
 	public String toString() {
 		return "Restaurant [id=" + id + ", restaurantName=" + restaurantName + ", street=" + street + ", city=" + city

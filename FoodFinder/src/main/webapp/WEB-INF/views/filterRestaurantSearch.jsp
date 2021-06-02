@@ -40,10 +40,10 @@
  		<br/>
  		<br/>
  		
- 		Filter By Budget:  
+ 		Filter By Budget: 
 		<form:checkbox path="selectedBudgets" value="Under $50" />Under $50&nbsp;
         <form:checkbox path="selectedBudgets" value="Under $100" />Under $100&nbsp; 
-        <form:checkbox path="selectedBudgets" value="Over $100" />Over $100&nbsp;  
+        <form:checkbox path="selectedBudgets" value="Over $100" />Over $100&nbsp; 
         <!-- <button type = "submit">Update Search Results</button> -->
 		<br/>
 		<br/>
@@ -77,9 +77,9 @@
         
         <button type = "submit">Update Search Results</button>
 	</form:form>
-	 <br/>	
-	 <div align="center">
+	<div align="center">
 		<!-- add a button that redirects you to the home page -->
 		<button onclick = "window.location.href = '${pageContext.request.contextPath}/home' ">Return to Homepage</button>
-	</div></body>
+	</div>
+</body>
 </html>

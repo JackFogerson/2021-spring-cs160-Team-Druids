@@ -27,6 +27,6 @@
  		<br/>
  		<br/>
  		<button onclick = "window.location.href = '${pageContext.request.contextPath}/restaurants' ">Browse Restaurants</button>
-	</div>
+ 	</div>
 </body>
 </html>

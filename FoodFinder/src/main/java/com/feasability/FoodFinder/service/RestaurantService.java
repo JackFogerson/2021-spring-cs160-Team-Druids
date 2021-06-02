@@ -14,4 +14,7 @@ public interface RestaurantService {
 	void deleteRestaurant(int id);						// Deletes the restaurant from the list
 			
 	public List<Restaurant> search(String keyword);		// Gets a list of restaurants that match the keyword
+	
+	public List<Restaurant> filterByLocation(String keyword, String location);  // Gets a list of restaurants that match the keyword and location
+
 }
